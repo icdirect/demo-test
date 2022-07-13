@@ -25,21 +25,38 @@ public class TestPracticeFormPageObjects {
     @Test
     void testform() {
 
+        String firstName = "Tom";
+        String lastName = "Sawyer";
+        String email = "toms@gmail.com";
+        String mobile = "9202139991";
+        String gender = "Male";
+        String month = "November";
+        String day = "11";
+        String year = "1989";
+        String subject = "Maths";
+        String hobbyOne = "Sports";
+        String hobbyTwo = "Music";
+        String picName = "pic.png";
+        String address = "Main street 1";
+        String state = "NCR";
+        String city = "Delhi";
+        String verifyText = "Thanks for submitting the form";
+
         registrationPage
                 .openPage()
-                .setFirstName("Tom")
-                .setLastName("Sawyer")
-                .setEmail("toms@gmail.com")
-                .setGender()
-                .setMobile("9202139991")
-                .setBirthDate("11", "November", "1989")
-                .setSubjects()
-                .setHobbies()
-                .setPicture("pic.png")
-                .setCurrentAddress("Main street 1")
-                .setState("NCR")
-                .setCity("Delhi")
-                .verifyForm("Thanks for submitting the form");
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setGender(gender)
+                .setMobile(mobile)
+                .setBirthDate(day, month, year)
+                .setSubjects(subject)
+                .setHobbies(hobbyOne, hobbyTwo)
+                .setPicture(picName)
+                .setCurrentAddress(address)
+                .setState(state)
+                .setCity(city)
+                .verifyForm(verifyText);
 
         registrationPage
                 .checkForm("Student Name", "Tom Sawyer")

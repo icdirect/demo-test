@@ -25,7 +25,8 @@ public class RegistrationPage {
             stateInput = $("#react-select-3-input"),
             cityInput = $("#react-select-4-input"),
             filledFormModal = $(".modal-header"),
-            birthDatePicker = $("#dateOfBirthInput");
+            birthDatePicker = $("#dateOfBirthInput"),
+            subjectsInput =  $("#subjectsInput");
 
     //actions
     public RegistrationPage openPage() {
@@ -64,21 +65,21 @@ public class RegistrationPage {
     }
 
 
-    public RegistrationPage setGender() {
-        $(byText("Male")).click();
+    public RegistrationPage setGender(String gender) {
+        $(byText(gender)).click();
 
         return this;
     }
 
-    public RegistrationPage setSubjects() {
-        $("#subjectsInput").setValue("Math").pressEnter();
+    public RegistrationPage setSubjects(String subject) {
+        subjectsInput.setValue(subject).pressEnter();
 
         return this;
     }
 
-    public RegistrationPage setHobbies() {
-        $(byText("Sports")).click();
-        $(byText("Music")).click();
+    public RegistrationPage setHobbies(String hubbyOne, String hobbyTwo) {
+        $(byText(hubbyOne)).click();
+        $(byText(hobbyTwo)).click();
 
         return this;
     }
