@@ -13,7 +13,7 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
 
     //locators
-    private SelenideElement
+    final private SelenideElement
             headerTitle = $(".practice-form-wrapper"),
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
