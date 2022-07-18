@@ -1,15 +1,15 @@
 package selenide;
 
-import com.codeborne.selenide.AuthenticationType;
-import com.codeborne.selenide.BasicAuthCredentials;
-import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.*;
 import org.openqa.selenium.Keys;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.Duration;
 
-import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -145,6 +145,38 @@ public class Snippets {
         //asserts
         $$("div").filterBy(text("123")).shouldHave(size(0));
         $$("div").shouldBe(CollectionCondition.empty); //тоже самое, что и первое
+
+        // проверки
+        $$("div").shouldHave(texts("text1", "text2")); //проверяет тексты на вхождение
+        // и еще проверяет на количество элементов, если будет больше чем задано будет ошибка
+        //если они будут в другом порядке, тоже будет ошибка
+        $$("div").shouldHave(exactTexts("text1", "text2")); //проверяет точные тексты
+        $$("div").shouldHave(textsInAnyOrder("text1", "text2")); //проверяет в любом порядке
+        $$("div").shouldHave(exactTextsCaseSensitiveInAnyOrder("text1", "text2")); //разный регистр в любом порядке
+        $$("div").shouldHave(itemWithText("text1")); //ищет в коллекции оидн элемент с текстом
+
+        $$("div").shouldHave(sizeGreaterThan(0)); //если размер должен быть больше чем
+        $$("div").shouldHave(sizeLessThan(10)); // если размер должен быть меньше чем
+        $$("div").shouldHave(sizeGreaterThanOrEqual(0)); // больше или равен
+        $$("div").shouldHave(sizeLessThanOrEqual(0)); //меньше или раверн
+    }
+
+    void file_operations_examples() throws FileNotFoundException {
+
+        File file1 = $("a.filelink").download(); //только для <a href=".."> линков (скачивание файла по ссылке)
+        File file2 = $("div").download(DownloadOptions.using(FileDownloadMode.FOLDER)); //скачивание файлов актуальное
+
+        File file =  new File("src/test/resouces/pic.png"); //загрузка файла и сабмит
+        $("#file-upload").uploadFile(file);
+        $("#file-upload").uploadFromClasspath("pic.png");
+        $("uploadbutton").click();
+
+    }
+
+    void javascript_examples(){
+        executeJavaScript("alert('selenide')");
+        executeJavaScript("alert(arguments[0]+arguments[1])", "abc", 12);
+        long fortytwo = executeJavaScript("return arguments[0]*arguments[1];", 6, 7);
     }
 
 
