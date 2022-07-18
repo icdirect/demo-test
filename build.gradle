@@ -6,17 +6,23 @@ repositories {
     mavenCentral()
 }
 
+compileTestJava {
+    options.encoding('UTF-8')
+}
+
 dependencies {
         testImplementation(
                 'com.codeborne:selenide:6.6.6',
-                'org.junit.jupiter:junit-jupiter:5.9.0-M1',
+                'org.junit.jupiter:junit-jupiter:5.9.0-M1'
 
         )
     testRuntimeOnly(
-            'org.junit.jupiter:junit-jupiter-engine:5.9.0-M1'
+            'org.junit.jupiter:junit-jupiter-engine:5.9.0-M1',
+            'org.slf4j:slf4j-simple:1.7.36'
     )
 }
 
 test {
      useJUnitPlatform()
+   // systemProperty "chromeoptions.prefs","init.accept_language=en" //язык с которым будет открываться наш сайт
 }
