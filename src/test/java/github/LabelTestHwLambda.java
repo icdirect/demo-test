@@ -43,6 +43,8 @@ public class LabelTestHwLambda {
             $(".subnav-links").shouldHave(Condition.text("Labels"));
         });
 
+
     }
+
 
 }

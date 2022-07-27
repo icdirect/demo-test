@@ -20,4 +20,10 @@ public class LabelTestHw {
         $(".subnav-links").shouldHave(Condition.text("Labels"));
 
     }
+
+    @Test
+    public void annotationTest() {
+
+    }
+
 }
